@@ -1,1 +1,0 @@
-print('Nguyen Tan Tan')
