@@ -1,6 +1,5 @@
 setwd("C:/CODE/RBook")
-## B�i 2
-# D???c d??? li???u
+## Bài 2
 ISIT <- read.table(file = "ISIT.txt", header= TRUE, dec = ".")
 names(ISIT)
 str(ISIT)
@@ -31,9 +30,9 @@ min(ISIT.Station3$SampleDepth)
 median(ISIT.Station3$SampleDepth)
 mean(ISIT.Station3$SampleDepth)
 max(ISIT.Station3$SampleDepth)
-#Ki???m tra station n�o �t hon
+#Kiểm tra station nào ít hon
 tapply(ISIT$Station, INDEX = ISIT$Station,length)
-#T???o dataframe m??? lo???i b??? station �t hon
+#Tạo dataframe mà loại bỏ station ít hơn
 ISIT2 <- ISIT[ISIT$Station!=4 & ISIT$Station!=5 ,]
 ISIT2
 #Extract the data from 2002

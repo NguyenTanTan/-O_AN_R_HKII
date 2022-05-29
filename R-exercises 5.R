@@ -1,4 +1,4 @@
-setwd('C:/D??? li???u/RBook')
+setwd('C:/Dữ liệu /RBook')
 rk<- read.table('Amphibian_road_Kills.txt', header = TRUE)
 rk
 names(rk)
