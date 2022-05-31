@@ -1,5 +1,6 @@
 setwd("C:/Dữ liệu/RBook")
-## Bài 1:Xử dụng tập dữ liệu BirdFlu.xls:
+## Bài 1:
+#Xử dụng tập dữ liệu BirdFlu.xls:
 # Sử dụng các phương pháp từ Chương 2, hãy cho biết tổng số ca bệnh cúm gia cầm trên mỗi quốc gia? 
 #Tổng số vụ mỗi năm là bao nhiêu?
 birdflu<-read.table(file='BirdFlu.txt',header=TRUE)
@@ -23,7 +24,15 @@ for (i in namecases){
   print(paste('2003: ',sumcases_year))
 }
 
-## Bài 2
+## Bài 2:
+#Tệp ISIT.xls. Trong R, trích xuất dữ liệu từ trạm 1. Có bao nhiêu quan sát được tại trạm này? 
+#Độ sâu lấy mẫu tối thiểu, trung vị, trung bình và tối đa tại trạm 1 là bao nhiêu?
+#Độ sâu lấy mẫu tối thiểu, trung vị, trung bình và tối đa tại trạm 2 là bao nhiêu? Ở trạm 3? 
+#Xác định bất kỳ trạm nào có ít quan sát hơn đáng kể. Tạo một khung dữ liệu mới bỏ qua các trạm này. 
+#Trích xuất dữ liệu từ năm 2002. Trích xuất dữ liệu từ tháng 4 (của tất cả các năm).
+#Trích xuất dữ liệu được đo ở độ sâu hơn 2000 mét (từ tất cả các năm và tháng). 
+#Hiển thị dữ liệu theo giá trị độ sâu tăng dần.
+#Hiển thị dữ liệu được đo ở độ sâu hơn 2000 mét vào tháng Tư.
 ISIT <- read.table(file = "ISIT.txt", header= TRUE, dec = ".")
 names(ISIT)
 str(ISIT)
@@ -73,7 +82,8 @@ showdata <-ISIT2Depth2000[I1,]
 #than 2000 meters in April
 E3 <- ISIT2[ISIT2$Month ==4 & ISIT2$SampleDepth >2000,]
 
-#Bài 3. Using the write.table function 
+#Bài 3. 
+#Using the write.table function 
 #with deep sea research data.
 write.table(E3, file="ISITDepth2000April.txt")
 
