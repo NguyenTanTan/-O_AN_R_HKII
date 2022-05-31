@@ -1,4 +1,28 @@
-setwd("C:/CODE/RBook")
+setwd("C:/Dữ liệu/RBook")
+## Bài 1:Xử dụng tập dữ liệu BirdFlu.xls:
+# Sử dụng các phương pháp từ Chương 2, hãy cho biết tổng số ca bệnh cúm gia cầm trên mỗi quốc gia? 
+#Tổng số vụ mỗi năm là bao nhiêu?
+birdflu<-read.table(file='BirdFlu.txt',header=TRUE)
+attach(birdflu)
+str(birdflu)
+birdflu
+namecases=c('cases2003','cases2004','cases2005','cases2006','cases2007','cases2008')
+# Tổng số ca bệnh cúm trên mỗi quốc gia
+print("Tổng số ca bệnh cúm của mỗi quốc gia: ")
+for (i in Country){
+  sumcases_country=0
+  for(j in namecases ){
+    sumcases=sumcases+birdflu[birdflu$Country==i,j]
+    }
+  print(paste(i,':',sumcases_country))
+  }
+# Tổng số ca cúm mỗi năm:
+print('Tổng số ca bệnh mỗi năm: ')
+for (i in namecases){
+  sumcases_year=sum(birdflu[,i])
+  print(paste('2003: ',sumcases_year))
+}
+
 ## Bài 2
 ISIT <- read.table(file = "ISIT.txt", header= TRUE, dec = ".")
 names(ISIT)
@@ -49,11 +73,11 @@ showdata <-ISIT2Depth2000[I1,]
 #than 2000 meters in April
 E3 <- ISIT2[ISIT2$Month ==4 & ISIT2$SampleDepth >2000,]
 
-#Exercise 3. Using the write.table function 
+#Bài 3. Using the write.table function 
 #with deep sea research data.
 write.table(E3, file="ISITDepth2000April.txt")
 
-#Exercise 4.
+#Bài 4.
 #Create a new variable inside ISIT
 # New variables Month
 ISIT$NewMoth <- NA
