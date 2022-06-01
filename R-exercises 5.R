@@ -1,3 +1,4 @@
+## Sử dụng tập dữ liệu Amphibian_road_Kills.txt để vẽ biểu đồ
 setwd('C:/Dữ liệu /RBook')
 rk<- read.table('Amphibian_road_Kills.txt', header = TRUE)
 rk
