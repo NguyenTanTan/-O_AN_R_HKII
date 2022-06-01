@@ -33,17 +33,18 @@ for (i in namecases){
 #Trích xuất dữ liệu được đo ở độ sâu hơn 2000 mét (từ tất cả các năm và tháng). 
 #Hiển thị dữ liệu theo giá trị độ sâu tăng dần.
 #Hiển thị dữ liệu được đo ở độ sâu hơn 2000 mét vào tháng Tư.
+
 ISIT <- read.table(file = "ISIT.txt", header= TRUE, dec = ".")
 names(ISIT)
 str(ISIT)
-#Extract the data from station 1
+#Dữ liệu station1
 ISIT.Station1 <- ISIT[ISIT$Station ==1,]
 ISIT.Station1
 names(ISIT.Station1)
 str(ISIT.Station1)
-#How many observations were made at this station
+# Số quan sát được thực hiện
 nrow(ISIT.Station1)
-# minimum, median, mean, maximum sampled depth 
+# minimum, median, mean, maximum độ sâu lấy mẫu
 # Station 1
 min(ISIT.Station1$SampleDepth)
 median(ISIT.Station1$SampleDepth)
@@ -68,41 +69,47 @@ tapply(ISIT$Station, INDEX = ISIT$Station,length)
 #Tạo dataframe mà loại bỏ station ít hơn
 ISIT2 <- ISIT[ISIT$Station!=4 & ISIT$Station!=5 ,]
 ISIT2
-#Extract the data from 2002
+#Lấy dữ liệu năm 2002
 Year2002 <- ISIT2[ISIT2$Year ==2002,]
-#Extract the data from April (of all years)
+#Lấy dữ liệu tháng 4 
 AllYear <- ISIT2[ISIT2$Month ==4,]
-#Extract the data that were measured at depths greater 
-#than 2000 meters (from all years and months)
+# Trích xuất dữ liệu được đo ở độ sâu lớn hơn 2000 mét
 ISIT2Depth2000 <- ISIT2[ISIT2$SampleDepth >2000,]
-#Show the data according to increasing depth values
+# Hiển thị dữ liệu theo giá trị độ sâu tăng dần
 I1 <- order(ISIT2Depth2000$SampleDepth)
 showdata <-ISIT2Depth2000[I1,]
-#Show the data that were measured at depths greater 
-#than 2000 meters in April
+# Trích xuất dữ liệu được đo ở độ sâu lớn hơn 2000 mét trong tháng 4
 E3 <- ISIT2[ISIT2$Month ==4 & ISIT2$SampleDepth >2000,]
 
-#Bài 3. 
+##Bài 3.
+#Trong bước cuối cùng của bài tập trước,dữ liệu được đo ở độ sâu 
+#lớn hơn 2000 mét vào tháng 4 đã được khai thác.
+#Xuất những dữ liệu này sang một tệp ascii mới
+
 #Using the write.table function 
-#with deep sea research data.
 write.table(E3, file="ISITDepth2000April.txt")
 
 #Bài 4.
-#Create a new variable inside ISIT
-# New variables Month
+#Sử dụng hàm nhân tố và truy cập các tập con của khung dữ liệu với dữ liệu 
+#nghiên cứu biển sâu. Các trạm từ 1 đến 5 được lấy mẫu vào tháng 4 năm 2001,
+#các trạm từ 6 đến 11 ở Tháng 8 năm 2001,các trạm từ 12 đến 15 vào tháng 3 năm 
+#2002 và các trạm từ 16 đến 19 vào tháng 10 năm 2002.
+#Tạo hai biến mới trong R để xác định tháng và năm. 
+#Lưu ý rằng đây là những yếu tố. 
+#Thực hiện việc này bằng cách thêm các biến mới bên trong khung dữ liệu.
+
+# Biến tháng mới
 ISIT$NewMoth <- NA
-ISIT$Station<=5
-ISIT$NewMoth[ISIT$Station<=5]
 ISIT$NewMoth[ISIT$Station <=5] <- "April"
 ISIT$NewMoth[ISIT$Station > 5 & ISIT$Station<=11] <- "August"
 ISIT$NewMoth[ISIT$Station > 11 & ISIT$Station<=15] <- "March"
 ISIT$NewMoth[ISIT$Station >= 16 & ISIT$Station<=19] <- "October"
 ISIT$NewMoth
 ISIT$NewMoth <- factor(ISIT$NewMoth)
-# New variables Year
+# Biến tháng mới
 ISIT$NewYear <- NA
 ISIT$NewYear[ISIT$Station <=11] <- 2001
-ISIT$NewYear[ISIT$Station  >=12 & ISIT$Station<=29] <- 2002
+ISIT$NewYear[ISIT$Station  >=12 & ISIT$Station<=19] <- 2002
 ISIT$NewYear
 ISIT$NewYear <- factor(ISIT$NewYear)
 
